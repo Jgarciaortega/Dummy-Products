@@ -80,7 +80,8 @@ public with sharing class DummyProductsCallOutsTest {
         DummyProductsCallOuts dpC;
         CredentialsWrapper sessionCredentials = new CredentialsWrapper(USER, USERNAME);
         sessionCredentials.accessToken = '123456';
-
+        Set<String> namesCheck = new Set<String>{'iphone', 'samsung'};
+        Set<String> descripCheck = new Set<String>{'iphone 15', 'samsung galaxy'};
         Test.setMock(HttpCalloutMock.class, new SingleRequestMock(fakeResponse,httpResponse));
 
         Test.startTest();
@@ -92,8 +93,7 @@ public with sharing class DummyProductsCallOutsTest {
 
         Test.stopTest();
 
-        List<Product2> prodCheck = [SELECT Name, Description FROM Product2 WHERE (Name = 'iphone' AND Description = 'iphone 15') OR 
-        (Name = 'samsung' AND Description = 'samsung galaxy')];
+        List<Product2> prodCheck = [SELECT Name, Description FROM Product2 WHERE (Name IN :namesCheck AND Description IN :descripCheck)];
         Assert.areEqual(2, prodCheck.size(), 'This records should be persisted in database');
      
     }
