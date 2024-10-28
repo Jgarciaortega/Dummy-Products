@@ -10,7 +10,7 @@ Project to do call outs to external api service and get products to persist in b
 * Execute getOneProducts (for persist one object) or getAllProducts (for persist all products). If execute both action in same transaction only work the first one.
 * One/Multiple objets are stored in bbdd (Note that duplicates product are not persisted).
   
-## EXAMPLE TO EXECUTE FROM ANONIMOUS WINDOW 
+## Example to execute with anonimous window
 
 DummyProductsCallOuts dPC = new DummyProductsCallOuts('emilys' , 'emilyspass');
 
@@ -21,6 +21,11 @@ dPC.getSessionCredentials();
 //dPC.getOneProducts();
 
 //dPC.getAllProducts();
+
+## About 
+
+* More info about api service in https//dummyjson.com
+
 
 
 
